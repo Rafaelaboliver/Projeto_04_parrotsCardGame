@@ -1,0 +1,70 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.page-game{
+    background-color: pink;
+    margin: auto;
+    width: 1255px;
+    height: 626px;
+    display: flex;
+    flex-direction: column;
+}
+
+.head-game{
+    width: 540px;
+    height: 63px;
+    margin-top: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: roboto;
+    font-size: 54px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #75B79E;
+    background-color: blueviolet;
+}
+
+.cards-deck {
+    background-color: aqua;
+    margin-top: 47px;
+    width: 1100px;
+    height: 326px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-unit{
+    width: 117px;
+    height: 146px;
+    margin-left: 34px;
+    background-color: #a7e9af;
+    border: 1px solid #99cea8;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 50px;
+    
+}
+
+.parrot {
+    width: 100px;
+    height: 100px;
+}
+
+.card-unit:hover{
+    box-shadow: 0 0 10px lightgray;
+}
+
+/*.back{
+    background-image: url("./Arquivos\ uteis\ -\ Projeto\ 04\ -\ Parrot\ Card\ Game/back.png");
+    background-size: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}*/

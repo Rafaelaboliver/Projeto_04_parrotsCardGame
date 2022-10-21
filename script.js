@@ -1,7 +1,9 @@
 let numberCards;
-let divCard;
+let divDeck;
+let imgBack;
 
 function parrotGame(){
+
     numberCards = prompt ('Insira o número de cartas');
     numberCards = [Number(numberCards)];
     console.log(numberCards);
@@ -17,43 +19,46 @@ function parrotGame(){
 
     };
     
-    const imgBack = ['parrot0', 'parrot1', 'parrot2', 'parrot3', 'parrot4', 'parrot5', 'parrot6', 
-    'parrot7', 'parrot8', 'parrot9', 'parrot10', 'parrot11', 'parrot12', 'parrot13'];
-    
+    imgBack = ['parrot0', 'parrot0', 'parrot1', 'parrot1', 'parrot2', 'parrot2', 'parrot3', 
+    'parrot3', 'parrot4', 'parrot4', 'parrot5', 'parrot5', 'parrot6', 'parrot6'];
+
     function addCards (){
         //adicionar as cartas no meu deck
-        divCard = document.querySelector('.cards-deck');
+        const divCard = document.querySelector('.cards-deck');
 
         let i = 0;
         while(numberCards > i){
-            const divDeck = `
+                divDeck = `
                 <div class="card-unit">
                     
                     <div class = "face front">
-                        <img src="./imagens/${imgBack[i]}.gif" >
+                        <img src="./imagens/front.png" >
+                        
                     </div>
             
                     <div class="face back">
-                        <img src="./imagens/front.png" >
+                        <img src="./imagens/${imgBack[i]}.gif" >
                     </div>
                  </div>
             `;
             divCard.innerHTML += divDeck;
             i++;
         }
-
+        divDeck.addEventListener('click', clickCard)
     }
     addCards();
 
-    divCard.addEventListener('click', clickCard, false);
-
     function clickCard (){
         const cardSelected = document.querySelectorAll('.face');
-         cardSelected[0].classList.toggle('flip');
-         cardSelected[1].classList.toggle('flip');
-         console.log(cardSelected[1].classList);
-        }
-        clickCard();
+        cardSelected[0].classList.toggle('flip');
+        cardSelected[1].classList.toggle('flip');
+        console.log(cardSelected[1].classList);
+        
+        clickCard(divDeck);
+        console.log(clickCard(divDeck))
+
+    }
+        
    
 }
 parrotGame();

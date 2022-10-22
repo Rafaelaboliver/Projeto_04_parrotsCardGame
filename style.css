@@ -73,10 +73,10 @@ img{
     transform: rotateY(180deg);
 }
 
-.flip.back{
+.flipped.back{
     transform: rotateY(0deg);
 }
-.flip.front {
+.flipped.front {
     transform: rotateY(-180deg);
 }
 

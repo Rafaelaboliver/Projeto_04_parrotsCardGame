@@ -54,7 +54,7 @@ function randomSort() {
     return Math.random() -0.5;
 };
 
-imgBackRandom.sort(randomSort);
+
 
 //pegar a estrutura do meu html e trazer para o javaScript, proveitando um modelo para gerar todas as cartas;
 //aplicar a distribuição em função do número informado no início do jogo;
@@ -148,7 +148,8 @@ function clickCard (cardSelected){
         //quando atingir o número de cartas, o jogo acaba;
         let gameFinished = matches*2;
         if (gameFinished == numberCards){
-            alert (`Você ganhou o jogo em ${clickGame} jogadas!`);
+            setTimeout(() => 
+                {alert (`Você ganhou o jogo em ${clickGame} jogadas!`)}, 800);
         }
     };
     endGame();

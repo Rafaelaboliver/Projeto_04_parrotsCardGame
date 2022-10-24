@@ -44,14 +44,17 @@ parrotGame();
 //criar um novo array vazio que vai coletar as imagens do imgBack;
 //fazer com que tenha o mesmo comprimento do anterior;
 //aplicar o comando que faz o "embaralhamento" e aplicar essa nova variável na estrutura do html;
-imgBack = ['0', '0', '1', '1', '2', '2', '3', '3', '4', '4', '5', '5', '6', '6'];
-imgBack.sort(randomSort)
+imgBack = ['0', '1', '2', '3', '4', '5', '6'];
+let pickCards = (numberCards/2);
+let selection = imgBack.slice(0, pickCards);
+let imgBackRandom = selection.concat(selection);
 
 function randomSort() {
     
     return Math.random() -0.5;
 };
 
+imgBackRandom.sort(randomSort);
 
 //pegar a estrutura do meu html e trazer para o javaScript, proveitando um modelo para gerar todas as cartas;
 //aplicar a distribuição em função do número informado no início do jogo;
@@ -62,14 +65,14 @@ function addCards (){
     let i = 0
     while (i < numberCards) {
         let divDeck = `
-        <div class="card-unit" id="${imgBack[i]}" onclick="clickCard(this)">
+        <div class="card-unit" id="${imgBackRandom[i]}" onclick="clickCard(this)">
                 
             <div class = "face front">
                 <img src="./imagens/front.png" >
             </div>
         
             <div class="face back">
-                <img src="./imagens/${imgBack[i]}.gif" >
+                <img src="./imagens/${imgBackRandom[i]}.gif" >
             </div>
 
         </div>

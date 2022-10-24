@@ -1,7 +1,7 @@
 //variáveis globais
 let numberCards;
+let images = [];
 let imgBack;
-let imgBackRandom;
 let cardCheck = [];
 let matches = 0;
 let clickGame = 0;
@@ -11,6 +11,7 @@ let clickGame = 0;
 //limpar a variável que armazena o valor para não acrescentar na próxima rodada;
 //rodar o prompt novamente;
 function parrotGame(){
+
 
     numberCards = prompt ('Insira o número de cartas');
     numberCards = [Number(numberCards)];
@@ -28,26 +29,28 @@ function parrotGame(){
         numberCards = '';
         parrotGame();
     };
+
+    let total = numberCards%2;
+    if (total !== 0) {
+        alert('Digite apenas números pares!');
+        numberCards = '';
+        parrotGame();
+    };
      
 };
 parrotGame();
-
-imgBack = ['parrot0', 'parrot0', 'parrot1', 'parrot1', 'parrot2', 'parrot2', 'parrot3', 
-'parrot3', 'parrot4', 'parrot4', 'parrot5', 'parrot5', 'parrot6', 'parrot6'];
 
 //função para embaralhar as cartas;
 //criar um novo array vazio que vai coletar as imagens do imgBack;
 //fazer com que tenha o mesmo comprimento do anterior;
 //aplicar o comando que faz o "embaralhamento" e aplicar essa nova variável na estrutura do html;
+imgBack = ['0', '0', '1', '1', '2', '2', '3', '3', '4', '4', '5', '5', '6', '6'];
+imgBack.sort(randomSort)
 
-//imgBackRandom = [];
-//while(imgBackRandom.length !== imgBack.length){
-    //imgBackRandom.sort(imgBack);
-
-    //if (imgBackRandom.indexOf(imgBack[i]) < 0){
-       // imgBackRandom.push(imgBack[i]);
-   // }
-//};
+function randomSort() {
+    
+    return Math.random() -0.5;
+};
 
 
 //pegar a estrutura do meu html e trazer para o javaScript, proveitando um modelo para gerar todas as cartas;
@@ -94,28 +97,32 @@ function clickCard (cardSelected){
         cardSelected.querySelector('.back').classList.toggle('flipped');
         cardSelected.querySelector('.front').classList.toggle('flipped');
 
+        //adiciona a carta selecionada dentro da array carCheck que só armazenará duas cartas por vez;
         cardCheck.push(cardSelected);  
         console.log(cardCheck);
 
         if (cardCheck.length === 2){
+            //conferindo se as cartas são iguais e adicionando a classe de match, caso o id seja igual;
             if (cardCheck[0].id === cardCheck[1].id){
                 cardCheck[0].childNodes[1].classList.toggle('match');
                 cardCheck[0].childNodes[3].classList.toggle('match');
                 cardCheck[1].childNodes[1].classList.toggle('match');
                 cardCheck[1].childNodes[3].classList.toggle('match');
 
+                //variável responsável por contar os pares formados;
                 matches++
                 console.log(matches)
                 cardCheck = [];
                 
             } else{
+                //quando não atende à condição acima, as cartas irão desvirar após 1s;
                 setTimeout(() => 
                 {cardCheck[0].childNodes[1].classList.toggle('flipped');
                 cardCheck[0].childNodes[3].classList.toggle('flipped');
                 cardCheck[1].childNodes[1].classList.toggle('flipped');
                 cardCheck[1].childNodes[3].classList.toggle('flipped');
 
-                cardCheck = [] }, 1500); 
+                cardCheck = [] }, 1000); 
                 
             }
         }
@@ -130,9 +137,12 @@ function clickCard (cardSelected){
 
         cardCheck = [];
     }
+    //variável responsável por contabilizar a quantidade de cliques durante todo o jogo;
     clickGame++;
     
     function endGame(){
+        //os pares formados quando multiplicado por 2, resultam no total de cartas;
+        //quando atingir o número de cartas, o jogo acaba;
         let gameFinished = matches*2;
         if (gameFinished == numberCards){
             alert (`Você ganhou o jogo em ${clickGame} jogadas!`);
@@ -142,10 +152,3 @@ function clickCard (cardSelected){
 
 };
 clickCard ();
-
-
-
-
-//fazer com que a carta, quando igual, permaneça virada e, quando diferente, fique dois segundos virada e desvire;
-//se as imagens possuir o mesmo nome, elas permanecem pra cima;
-//caso contrário, elas perdem a classe flipped;
